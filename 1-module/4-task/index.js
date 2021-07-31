@@ -1,6 +1,8 @@
 function checkSpam(str) {
-  if (str.toLowerCase().includes('1xbet') || str.toLowerCase().includes('xxx'))
-  return true;
-else
-  return false;
+  let string = str.length
+  let s = str.slice(0, maxlength - 1)
+    if ( string > maxlength)
+      return s + '…'
+    else
+      return str
 }
