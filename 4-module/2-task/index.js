@@ -4,5 +4,4 @@ function makeDiagonalRed(table) {
     row.cells[i].style.cssText= `background-color: red`;
   }
   return table;
-  // let cell = table.rows[0].cells[0];
 }
