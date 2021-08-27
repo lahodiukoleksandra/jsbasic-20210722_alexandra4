@@ -12,7 +12,59 @@
  *      }
  *
  */
-export default class UserTable {
-  constructor(rows) {
-  }
+ class UserTable {
+	create_header() {
+		const thead = document.createElement('thead');
+		this.elem.appendChild(thead)
+
+		const tr = document.createElement('tr');
+		thead.appendChild(tr);
+
+		const headers = ['Имя', 'Возраст', 'Зарплата', 'Город', ''];
+		for (let header of headers) {
+			const th = document.createElement('th');
+			th.innerText = header;
+			tr.appendChild(th);
+		}
+	}
+
+	create_body() {
+		const tbody = document.createElement('tbody');
+		this.elem.appendChild(tbody)
+
+		for (let i = 0; i < this.rows.length; i++) {
+			const tr = document.createElement('tr');
+			tr.id = `row_${i}`;
+			tbody.appendChild(tr);
+
+			const attributes = ['name', 'age', 'salary', 'city', 'button'];
+
+			for (let attr of attributes) {
+				const td = document.createElement('td');
+
+				if (attr === 'button') {
+					const btn = document.createElement('button');
+					btn.innerText = 'X';
+					btn.addEventListener('click', () => {
+						const row = document.getElementById(tr.id);
+						row.remove();
+					});
+					td.appendChild(btn);
+				} else {
+					td.innerText = this.rows[i][attr];
+				}
+
+				tr.appendChild(td);
+			}
+		}
+	}
+
+	constructor(rows) {
+		this.rows = rows;
+		this.elem = document.createElement('table');
+		this.create_header();
+		this.create_body();
+	}
 }
+
+export default UserTable;
