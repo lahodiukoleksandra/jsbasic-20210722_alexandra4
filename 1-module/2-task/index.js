@@ -10,19 +10,19 @@ function print(text) {
  * чтобы функция sayHello работала корректно
  */
 function isValid(name) {
-    if (name === null) {
+  if (name === null) {
     return false;
-    }
+  }
 
-    let len = name.length
-    if (len < 4 ) {
+  let len = name.length;
+  if (len < 4) {
     return false;
-    }
-    if (name.includes(' ')) {
+  }
+  if (name.includes(' ')) {
     return false;
-    }
-      return true;
-    }
+  }
+  return true;
+}
     
 
 function sayHello() {

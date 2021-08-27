@@ -25,10 +25,10 @@ export default class RibbonMenu {
       const event = new CustomEvent('ribbon-select', { 
         detail: categories[i].id,
         bubbles: true
-      })
+      });
       link.onclick = () => {
         link.dispatchEvent(event);
-      }
+      };
       ribbonInner.appendChild(link);
     }
     this.elem.appendChild(ribbonInner);
@@ -47,7 +47,7 @@ export default class RibbonMenu {
       if (ribbonInner.scrollLeft < 350) {
         leftArrow.classList.remove('ribbon__arrow_visible');
       }
-    }
+    };
 
     rightArrow.onclick = () => {
       const scrollWidth = ribbonInner.scrollWidth;
@@ -60,7 +60,7 @@ export default class RibbonMenu {
       if (scrollRight <= 350) {
         rightArrow.classList.remove('ribbon__arrow_visible');
       }
-    }
+    };
 
 
 
@@ -95,4 +95,4 @@ export default class RibbonMenu {
     // console.log(scrollRight)
   }
 
-};
+}

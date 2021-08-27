@@ -1,10 +1,10 @@
 function ucFirst(str) {
   if (str === '')
-  return '';
+  {return '';}
 
-  let first = str[0]
-  let firstB = first.toUpperCase()
-  let word = str.slice(1)
+  let first = str[0];
+  let firstB = first.toUpperCase();
+  let word = str.slice(1);
   
-  return firstB + word
+  return firstB + word;
 }

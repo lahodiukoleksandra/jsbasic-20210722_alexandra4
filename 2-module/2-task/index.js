@@ -1,6 +1,6 @@
 function isEmpty(obj) {
   if (Object.entries(obj).length === 0) {
-    return true
+    return true;
   }
-  return false
-  }
+  return false;
+}
