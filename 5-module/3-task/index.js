@@ -1,36 +1,48 @@
-let offset = 0;
+function moveSlide(arrowLeft, arrowRight, direction) {
+	const numOfSlides = document.getElementsByClassName('carousel__slide').length;
+	const slideWidth = document.getElementsByClassName('carousel__slide')[0].offsetWidth;
+	const carousel = document.getElementsByClassName('carousel__inner')[0];
+	const maxOffset = numOfSlides * slideWidth;
 
-function shift(direction) {
-  const slide = document.getElementsByClassName('carousel__inner')[0];
-  if (direction === 'left') {
-    offset += slide.offsetWidth;
-  } else {
-    offset -= slide.offsetWidth;
-  }
-  
-  const left = document.getElementsByClassName('carousel__arrow carousel__arrow_left')[0];
-  const right = document.getElementsByClassName('carousel__arrow carousel__arrow_right')[0];
-  if (offset === 0) {
-    left.style.display = 'none';
-  } else if (offset === -2565) {
-    right.style.display = 'none';
-  } else {
-    left.style.display = '';
-    right.style.display = '';
-  }
+	let offset;
+	if (!carousel.style.transform) {
+		offset = 0;
+	} else {
+		offset = parseInt(carousel.style.transform.replace(/[^0-9-]/g, ''));
+	}
 
-  slide.style.transform = `translateX(${offset}px)`;
+	if (direction === 'left') {
+		offset += slideWidth;
+	} else {
+		offset -= slideWidth;
+	}
+
+
+	if (offset === 0) {
+		arrowLeft.style.display = 'none';
+	} else {
+		arrowLeft.style.display = '';
+	}
+
+	if (offset - slideWidth === -maxOffset) {
+		arrowRight.style.display = 'none';
+	} else {
+		arrowRight.style.display = '';
+	}
+
+	carousel.style.transform = `translateX(${offset}px)`;
 }
 
 function initCarousel() {
-  const left = document.getElementsByClassName('carousel__arrow carousel__arrow_left')[0];
-  const right = document.getElementsByClassName('carousel__arrow carousel__arrow_right')[0];
-  left.style.display = 'none';
+	const arrowLeft = document.getElementsByClassName('carousel__arrow_left')[0];
+	const arrowRight = document.getElementsByClassName('carousel__arrow_right')[0];
 
-  left.addEventListener('click', () => {
-    shift('left');
-  });
-  right.addEventListener('click', () => {
-    shift('right');
-  });
+	arrowLeft.addEventListener("click", function() {
+		moveSlide(arrowLeft, arrowRight, 'left');
+	});
+	arrowRight.addEventListener("click", function() {
+		moveSlide(arrowLeft, arrowRight, 'right');
+	});
+
+	arrowLeft.style.display = 'none';
 }
